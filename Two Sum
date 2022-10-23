@@ -1,0 +1,20 @@
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        vector<int> twoSum;
+        for (unsigned int i = 0; i < nums.size(); ++i) {
+            for (unsigned int j = 0; j < nums.size(); ++j) {
+                if (twoSum.size() == 2) {
+                        break;
+                }
+                if (nums.at(i) + nums.at(j) == target) {
+                    if (i != j) {
+                        twoSum.push_back(i);
+                        twoSum.push_back(j);
+                    }
+                }
+            }
+        }
+        return twoSum;
+    }
+};
