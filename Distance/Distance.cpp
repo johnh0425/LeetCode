@@ -1,7 +1,7 @@
 
 #include "Distance.h"
 
-Distance::Distance() {
+Distance::Distance() {      // default constructor
     feet = 0;
     inches = 0.0;
 }
@@ -19,28 +19,28 @@ Distance::Distance(double in) {
 
 }
 
-unsigned Distance::getFeet() const {
+unsigned Distance::getFeet() const {        // returns feet
     return feet;
 }
 
-double Distance::getInches() const {
+double Distance::getInches() const {        // returns inches
     return inches;
 }
 
-double Distance::distanceInInches() const {
+double Distance::distanceInInches() const {         // returns total distance in inches
     double in;
     in = inches + (feet * 12.0);
     return in;
 }
 
-double Distance::distanceInFeet() const {
+double Distance::distanceInFeet() const {           // returns total distance in feet
     double ft;
     ft = inches / 12.0;
     ft = (double)feet + ft;
     return ft;
 }
 
-double Distance::distanceInMeters() const {
+double Distance::distanceInMeters() const {         // returns total distance in meters
     double in;
     double meters;
     in = inches + (feet * 12.0);
@@ -48,11 +48,11 @@ double Distance::distanceInMeters() const {
     return meters;
 }
 
-Distance Distance::operator+(const Distance &rhs) const {
+Distance Distance::operator+(const Distance &rhs) const {           // addition operator
     return Distance(distanceInInches() + rhs.distanceInInches());
 }
 
-Distance Distance::operator-(const Distance &rhs) const {
+Distance Distance::operator-(const Distance &rhs) const {           // subtraction operator
     return Distance(distanceInInches() - rhs.distanceInInches());
 }
 
