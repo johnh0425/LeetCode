@@ -4,7 +4,7 @@
 #include <string>
 using namespace std;
 
-ShoppingCart::ShoppingCart() {
+ShoppingCart::ShoppingCart() {      // default constructor
     _customerName = "none";
     _currentDate = "January 1, 2016";
 }
@@ -12,17 +12,17 @@ ShoppingCart::ShoppingCart(string cName, string cDate) {
     _customerName = cName;
     _currentDate = cDate;
 }
-string ShoppingCart::customerName() const {
+string ShoppingCart::customerName() const {     // returns customer's name
     return _customerName;
 }
-string ShoppingCart::date() const {
+string ShoppingCart::date() const {     // returns date
     return _currentDate;
 }
-void ShoppingCart::addItem(ItemToPurchase itemToPurchase) {
+void ShoppingCart::addItem(ItemToPurchase itemToPurchase) {         // adds item to shopping cart
     _cartItems.push_back(itemToPurchase);
 }
 
-void ShoppingCart::removeItem(string itemName) {
+void ShoppingCart::removeItem(string itemName) {        // removes item from shopping cart
     unsigned int count = 0;
     for (unsigned int i = 0; i < _cartItems.size(); ++i) {
         if (_cartItems.at(i).name() == itemName) {
@@ -38,7 +38,7 @@ void ShoppingCart::removeItem(string itemName) {
     }
 }
 
-void ShoppingCart::modifyItem(ItemToPurchase itemToPurchase) {
+void ShoppingCart::modifyItem(ItemToPurchase itemToPurchase) {      // modifies the item in shopping cart
     unsigned int count = 0;
     for (unsigned int i = 0; i < _cartItems.size(); ++i) {
         if (_cartItems.at(i).name() == itemToPurchase.name()) {
@@ -62,7 +62,7 @@ void ShoppingCart::modifyItem(ItemToPurchase itemToPurchase) {
     }
 }
 
-int ShoppingCart::numItemsInCart() {
+int ShoppingCart::numItemsInCart() {        // returns number of items in shopping cart
     int sumQuantity = 0;
     for (unsigned int i = 0; i < _cartItems.size(); ++i) {
         sumQuantity = sumQuantity + _cartItems.at(i).quantity();
@@ -70,7 +70,7 @@ int ShoppingCart::numItemsInCart() {
     return sumQuantity;
 }
 
-int ShoppingCart::costOfCart() {
+int ShoppingCart::costOfCart() {        // returns the total cost of shopping cart
     int sumCost = 0;
     int itemTotal = 0;
     for (unsigned int i = 0; i < _cartItems.size(); ++i) {
@@ -80,7 +80,7 @@ int ShoppingCart::costOfCart() {
     return sumCost;
 }
 
-void ShoppingCart::printTotal() {
+void ShoppingCart::printTotal() {       // prints out the total cost of cart
     cout << customerName() << "'s Shopping Cart - " << date() << endl;
     cout << "Number of Items: " << numItemsInCart() << endl;
     cout << endl;
@@ -100,7 +100,7 @@ void ShoppingCart::printTotal() {
 
 }
 
-void ShoppingCart::printDescriptions() {
+void ShoppingCart::printDescriptions() {        // prints out description of item in cart
     cout << customerName() << "'s Shopping Cart - " << date() << endl;
     cout << endl;
     cout << "Item Descriptions" << endl;
