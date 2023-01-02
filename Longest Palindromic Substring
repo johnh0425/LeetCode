@@ -1,0 +1,42 @@
+/* Given a string s, return the longest  palindromic substring in s.
+
+Constraints
+1 <= s.length <= 1000
+s consist of only digits and English letters. */
+
+class Solution {
+public:
+    string longestPalindrome(string s) {
+        int start = 0;
+        int end = 0;
+        for (unsigned int i = 0; i < s.length(); i++) {
+            int flength = expand(s, i, i);
+            int slength = expand(s, i, i + 1);
+            if (flength > slength) {
+                if (flength > end - start) {
+                    start = i - ((flength - 1) / 2);
+                    end = i + (flength / 2);
+                }
+            }
+            else {
+                if (slength > end - start) {
+                    start = i - ((slength - 1) / 2);
+                    end = i + (slength / 2);
+                }
+            }
+        }
+        string palindrome = "";
+        for (unsigned int i = start; i <= end; i++) {
+            palindrome = palindrome + s.at(i);
+        }
+        return palindrome;
+    }
+
+    int expand(string s, int left, int right) {
+        while (left >= 0 && right < s.length() && s.at(left) == s.at(right)) {
+            left = left - 1;
+            right = right + 1;
+        }
+        return right - left - 1;
+    }
+};
