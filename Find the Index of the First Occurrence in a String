@@ -1,0 +1,29 @@
+/* Given two strings needle and haystack, return the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack.
+
+Constraints
+1 <= haystack.length, needle.length <= 104
+haystack and needle consist of only lowercase English characters. */
+
+class Solution {
+public:
+    int strStr(string haystack, string needle) {
+        if (haystack.size() < needle.size()) {
+            return -1;
+        }
+        for (unsigned int i = 0; i <= haystack.size() - needle.size(); i++) {
+            if (haystack.at(i) == needle.at(0)) {
+                int j = 0;
+                for (; j < needle.size(); j++) {
+                    if (haystack.at(i + j) != needle.at(j)) {
+                        break;  
+                    }
+                }
+                if (j == needle.size()) {
+                    return i;
+                }
+            }
+        } 
+        return -1;
+    }
+
+};
