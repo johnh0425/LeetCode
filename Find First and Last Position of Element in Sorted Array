@@ -1,0 +1,42 @@
+/* Given an array of integers nums sorted in non-decreasing order, find the starting and ending position of a given target value.
+If target is not found in the array, return [-1, -1].
+You must write an algorithm with O(log n) runtime complexity.
+
+Constraint
+0 <= nums.length <= 105
+-109 <= nums[i] <= 109
+nums is a non-decreasing array.
+-109 <= target <= 109 */
+
+class Solution {
+public:
+    vector<int> searchRange(vector<int>& nums, int target) {
+        vector<int> pos;
+        pos.push_back(-1);
+        pos.push_back(-1);
+        int first = -1;
+        int last = -1;
+        if (nums.size() == 0) {
+            pos.at(0) = first;
+            pos.at(1) = last;
+            return pos;
+        }
+        for (unsigned int i = 0; i < nums.size(); i++) {
+            if ((nums.at(i) == target) && (first == -1)) {
+                first = i;
+            }
+            else if (nums.at(i) == target) {
+                last = i;
+            }
+
+        }
+        pos.at(0) = first;
+        if ((first != -1) && (last == -1)) {
+            pos.at(1) = first;
+        }
+        else {
+            pos.at(1) = last;
+        }
+        return pos;
+    }
+};
