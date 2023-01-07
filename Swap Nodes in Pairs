@@ -1,0 +1,54 @@
+/*Given a linked list, swap every two adjacent nodes and return its head. 
+You must solve the problem without modifying the values in the list's nodes (i.e., only nodes themselves may be changed.)
+
+Constraints
+The number of nodes in the list is in the range [0, 100].
+0 <= Node.val <= 100 */
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* swapPairs(ListNode* head) {
+    if(head == nullptr || head->next == nullptr) {
+        return head;
+    }
+    ListNode* temp = head -> next;
+    head->next = temp->next;
+    temp->next = head;
+    head = temp;
+
+    ListNode* tempBefore = head->next;
+    if (tempBefore->next == nullptr) {
+        return head;
+    }
+    temp = tempBefore->next;
+    if (temp->next == nullptr) {
+        return head;
+    }
+    ListNode* tempSwap = temp->next;
+    while (temp != nullptr) {
+        tempBefore->next = tempSwap;
+        temp->next = tempSwap->next;
+        tempSwap->next = temp;
+        tempBefore = temp;
+        temp = tempBefore ->next;
+        if (temp == nullptr) { 
+            break;
+        }
+        tempSwap = temp->next;
+        if (tempSwap == nullptr) { 
+            break;
+        }
+    }
+    return head;
+    }
+};
