@@ -1,0 +1,28 @@
+/* Given an array nums of distinct integers, return all the possible permutations. You can return the answer in any order.
+
+Constraints
+1 <= nums.length <= 6
+-10 <= nums[i] <= 10
+All the integers of nums are unique. */
+
+class Solution {
+public:
+    vector<vector<int>> permute(vector<int>& nums) {
+        vector<vector<int>> permutation;
+        permuteRecursive(nums, 0, permutation);
+        return permutation;
+    }
+
+    void permuteRecursive(vector<int>& nums, int start, vector<vector<int>>& permutation) {
+        if (start >= nums.size()) {
+            permutation.push_back(nums);
+            return;
+        }
+        for (unsigned int i = start; i < nums.size(); i++) {
+            swap(nums.at(start), nums.at(i));
+            permuteRecursive(nums, start + 1, permutation);
+            swap(nums.at(start), nums.at(i));
+        }
+    }
+};
+ 
